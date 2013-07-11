@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        body {
+            font-family: 'Lato', Calibri, Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            color: #fff;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .button {
+            opacity: 0;
+            position: absolute;
+            z-index: 2;
+            width: 100px;
+            height: 50px;
+            top: 50%;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAABkCAYAAAB+S+s7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTQ0RTUyQTExQTExMTFFMkI5RDlCRDUzRjA3RTZBQUQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTQ0RTUyQTIxQTExMTFFMkI5RDlCRDUzRjA3RTZBQUQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5NDRFNTI5RjFBMTExMUUyQjlEOUJENTNGMDdFNkFBRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5NDRFNTJBMDFBMTExMUUyQjlEOUJENTNGMDdFNkFBRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pr54LGQAAAMeSURBVHja3FlrS1RRFJ0sSCZk/oA6Phh1lMFR+xcWFSUhJjIRIiKDiYmI1L/pq18LyQ9R/Yjo/X73eUy9rak9MAzz2PvOunejG5bovYeztvees89e6yaCIEhEjAvADnC29l7UxJeAUvA/HgDJuMivVBFX4lF1AlERX61DXInHQFdU5NeA/aB5PAFSp/5lwIsZ4D5wRjF2l/kfXwcOAl38AqZYxLMG4p/AJOudzxmIfwATrNU+byD+DuRZ+7xgIP4GjLMq3E3g0ECcqzdPGOJbwJGS+Csw1mguK/GigfgzkG02n4V4yUD8CRhpNaeWeNlA/BEY1syrIV4xEH8AhrRPs9WAooH4PZCxrKFmN28biN8Bg9ad0+jGeqCPt8BAmHpR7+KGgfg10B+2StZe2DQQvwLS7ZwN1X9sGYhfAr3tnoiVX7YNxC+AHkYfUP5x10D8HOhmdT8d6KVOG3o0asPn/tjdF5z7VgtbZPqY5Nby+iZslWt2cy3q+t5qwGqUJ5tmUNGrmXBvo9wbSPfWOYxo+AKMMsmtcqmhaolTKObYVtiCMYF8QLbCbniZA+62SGhD6MRYYRYT8FnZBDxx9mcz43cvDuPX3fKuNfs7NRWuUwZPR51Y7YWkPJ5AHtfFuMiTsiCqoyTvLVLyLtkC9aIkWycS8hTwtEVR2JfiQSffVdbjP8AMm/w88FuZwIEcINR3PilHnTaBWfZqn5DDXpvAHHuf5+WLgDaBebZEHpd+S5vAAlsi54wJFNgSeUx6bk0ciZigSuRRUR3aBBbZEjkrwk+bwBJbIg+L9NUmsMyWyEMi/rUJrLAlcka+KGgTKLIl8qD4L9oEVtkSeUAcKG2ssSVyv3hw2rjDlsh94kJqY5PdOqfFCNbGFrtv7xErXBtliz3BVKndwB6QUY6/15HwDM/HziDu9VpwafniEPtWs+7xDVaRsVa3debB0nZdP1ZHqlsz4dZGjXg1kFn5YhB762zt2WmiwaJWDuXLg4tQLATHXSK7mQNutsiUOP8uhpCrFZYS59/FBHS1Pys418D4vRyn5f3Qw/KO3ez/K8AAqwIub7raSlsAAAAASUVORK5CYII=') no-repeat;
+        }
+
+        #prev {
+            left: 33px;
+        }
+
+        #next {
+            background-position-y: -50px;
+            right: -33px;
+        }
+
+        .button:hover {
+            opacity: 1;
+        }
+
+        .header {
+            height: 99px;
+            width: 100%;
+            position: absolute;
+            z-index: 3;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .pt-perspective {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            max-height: 526px;
+            -webkit-perspective: 1200;
+            -moz-perspective: 1200;
+            -ms-perspective: 1200;
+            perspective: 1200;
+        }
+
+        .pt-page {
+            width: 100%;
+            min-width: 600px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            overflow: hidden;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .pt-page-1, .n-page1 {
+            background: url(../Image/slide1.jpg) no-repeat;
+        }
+
+        .pt-page-2, .n-page2 {
+            background: url(../Image/slide2.jpg) no-repeat;
+        }
+
+        .pt-page-3, .n-page3 {
+            background: url(../Image/slide3.jpg) no-repeat;
+        }
+
+        .pt-page-4, .n-page4 {
+            background: url(../Image/slide4.png) no-repeat;
+        }
+
+        .pt-page-current, .no-js .pt-page {
+            visibility: visible;
+            z-index: 1;
+        }
+
+        .selectorsBlock.bullets {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .selectorsBlock.bullets .selectors {
+            display: inline;
+            text-align: center;
+        }
+
+        .selectorsBlock.bullets .selectors .item {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            margin: 0 0 0 4px;
+            background: #fff;
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        .selected {
+            opacity: 1 !important;
+        }
+    </style>
+    <link href="animations.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+    <div class="header"></div>
+    <div id="pt-main" class="pt-perspective">
+        <div class="pt-page pt-page-1 pt-page-current" data-pop="page1">
+            <h1><span>A collection of </span><strong>Page</strong> Transitions1</h1>
+        </div>
+        <div class="pt-page pt-page-2" data-pop="page2">
+            <h1><span>A collection of </span><strong>Page</strong> Transitions2</h1>
+        </div>
+        <div class="pt-page pt-page-3" data-pop="page3">
+            <h1><span>A collection of </span><strong>Page</strong> Transitions3</h1>
+        </div>
+        <div class="pt-page pt-page-4" data-pop="page4">
+            <h1><span>A collection of </span><strong>Page</strong> Transitions4</h1>
+        </div>
+        <div id="prev" class="button"></div>
+        <div id="next" class="button"></div>
+        <div class="selectorsBlock bullets">
+            <div class="selectors">
+                <div class="item selected"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+            </div>
+        </div>
+    </div>
+    <script src="jquery.page.transition.js"></script>
+    <script type="text/javascript">
+        var pp = new window.tranPage({ pages: $('.pt-page') });
+        var $pages = pp.options.pages;
+        var current = 1;
+        var $selectors = $('.selectors');
+        var $items = $selectors.find('.item');
+        $('#prev').on('click', function () {
+            if (current >= $pages.length) current = 0;
+            //自定义动画
+            pp.options.outAnimateClass = 'pt-page-rotatePushLeft';
+            pp.options.inAnimateClass = 'pt-page-moveFromRight';
+            pp.changePage({
+                wrap: null,
+                page: null,
+                pop: $pages.eq(current).data('pop'),
+                beforeTrigger: false,
+                showLoading: false,
+                startCallback: function (option) {
+                    console.log('startcallback');
+                },
+                endCallback: function (option) {
+                    $items.removeClass('selected').eq(current).addClass('selected');
+                    current++;
+                    console.log(current);
+                    console.log('endcallback');
+                }
+            });
+        });
+        $('#next').on('click', function () {
+            if (current == $pages.length) current = 0;
+            pp.options.outAnimateClass = 'pt-page-rotatePushRight';
+            pp.options.inAnimateClass = 'pt-page-moveFromLeft';
+            pp.changePage({
+                wrap: null,
+                page: null,
+                pop: $pages.eq(current == 0 ? 0 : $pages.length - current).data('pop'),
+                beforeTrigger: false,
+                showLoading: false,
+                startCallback: function (option) {
+                    console.log('startcallback');
+                },
+                endCallback: function (option) {
+                    $items.removeClass('selected').eq(current == 0 ? 0 : $pages.length - current).addClass('selected');
+                    current++;
+                    console.log(current);
+                    console.log('endcallback');
+                }
+            });
+        });
+        $('.pt-perspective').hover(function () {
+            $('.button').fadeTo('slow', 0.7);
+        }, function () {
+            $('.button').fadeTo('slow', 0);
+        });
+        //自动滑动
+        //setInterval(function () {
+        //    $('#prev').trigger('click');
+        //}, 5000);
+    </script>
+</body>
+</html>
