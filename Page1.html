@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        body {
+            font-family: 'Lato', Calibri, Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            color: #fff;
+            background: #333;
+            overflow: hidden;
+        }
+
+        button#prev {
+            left: 300px;
+            z-index: 999;
+            top: 300px;
+            position: absolute;
+        }
+
+        button#next {
+            left: 400px;
+            z-index: 999;
+            top: 300px;
+            position: absolute;
+        }
+
+        .navigation {
+            position: absolute;
+            z-index: 2;
+            height: 100%;
+            width: 88px;
+        }
+
+        .navigation ul {
+            width: 100%;
+            height: inherit;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navigation ul li {
+            list-style-type: none;
+            height: 16.6666666%;
+            line-height: 100%;
+            text-align: center;
+            border-right: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            display: table;
+            width: 100%;
+        }
+        .navigation ul li:first-child {
+        border-right:none;
+        }
+        .navigation ul li a {
+            color: #fff;
+            font-size: 22px;
+            display: table-cell;
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .pt-perspective {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            -webkit-perspective: 1200;
+            -moz-perspective: 1200;
+            -ms-perspective: 1200;
+            perspective: 1200;
+        }
+
+        .pt-page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 88px;
+            visibility: hidden;
+            overflow: hidden;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            /*-webkit-transform: translate3d(0, 0, 0);
+            transform: translateZ(-500px) translateX(200%);*/
+        }
+
+        .pt-page-1, .n-page1 {
+            background: #0ac2d2;
+        }
+
+        .pt-page-2, .n-page2 {
+            background: #7bb7fa;
+        }
+
+        .pt-page-3, .n-page3 {
+            background: #60d7a9;
+        }
+
+        .pt-page-4, .n-page4 {
+            background: #fdc162;
+        }
+
+        .pt-page-5, .n-page5 {
+            background: #fd6a62;
+        }
+
+        .pt-page-6, .n-page6 {
+            background: #f68dbb;
+        }
+
+        .pt-page-current, .no-js .pt-page {
+            visibility: visible;
+            z-index: 1;
+        }
+    </style>
+    <link href="Style/animations.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+    <div class="navigation">
+        <ul>
+            <li data-pop="page1" class="js-actived n-page1"><a href="#">page1</a></li>
+            <li data-pop="page2" class="n-page2" data-page="aa.html"><a href="#">page2</a></li>
+            <li data-pop="page3" class="n-page3" data-page="aa.html"><a href="#">page3</a></li>
+            <li data-pop="page4" class="n-page4"><a href="#">page4</a></li>
+            <li data-pop="page5" class="n-page5"><a href="#">page5</a></li>
+            <li data-pop="page6" class="n-page6"><a href="#">page6</a></li>
+        </ul>
+    </div>
+    <div id="pt-main" class="pt-perspective">
+        <div class="pt-page pt-page-1 pt-page-current" data-pop="page1">
+            <h1><span>A collection of </span><strong>Page</strong> Transitions1</h1>
+        </div>
+        <div class="pt-page pt-page-2" data-pop="page2">
+        </div>
+        <div class="pt-page pt-page-3" data-pop="page3">
+            <h1><span>A collection of </span><strong>Page</strong> Transitions3</h1>
+        </div>
+        <div class="pt-page pt-page-4" data-pop="page4">
+            <h1><span>A collection of </span><strong>Page</strong> Transitions4</h1>
+        </div>
+        <div class="pt-page pt-page-5" data-pop="page5">
+            <h1><span>A collection of </span><strong>Page</strong> Transitions5</h1>
+        </div>
+        <div class="pt-page pt-page-6" data-pop="page6">
+            <h1><span>A collection of </span><strong>Page</strong> Transitions6</h1>
+        </div>
+    </div>
+    <button data-animation="67" id="prev">prev</button>
+    <button data-animation="67" id="next">next</button>
+    <script src="lib/jquery.page.transition.js"></script>
+    <script type="text/javascript">
+        var pp = new window.tranPage({
+            pages: $('.pt-page'),
+            outAnimateClass: 'pt-page-rotatePushRight',
+            inAnimateClass: 'pt-page-moveFromLeft'
+        });
+        // console.log(pp.changePage());
+        $('.navigation').on('click', 'li', function (e) {
+            var $this = $(this);
+            if ($this.hasClass('js-actived')) return;
+            $('.js-actived').removeClass('js-actived').css('border-right', '1px solid #fff');
+
+            pp.changePage({
+                wrap: null,
+                page: $this.data('page'),
+                pop: $this.data('pop'),
+                beforeTrigger: true,
+                showLoading: false,
+                startCallback: function (option) {
+                    console.log('startcallback');
+                },
+                endCallback: function (option) {
+                    console.log('endcallback');
+                    $this.addClass('js-actived').css('border-right', 'none');
+                }
+            });
+        });
+        $('#prev').click(function () {
+            //  pp.changePage('page4');
+        });
+        $('#next').click(function () {
+            // pp.changePage('page3');
+        });
+    </script>
+</body>
+</html>
